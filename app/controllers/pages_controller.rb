@@ -15,4 +15,10 @@ class PagesController < ApplicationController
     @title = "Help"
   end
 
+  def faq
+    @title = "Frequently Asked Questions"
+  end
+
 end
+
+

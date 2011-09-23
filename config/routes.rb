@@ -6,6 +6,7 @@ SampleApp::Application.routes.draw do
   match '/about',   :to   => 'pages#about'
   match '/help',    :to   => 'pages#help'
   match '/signup',  :to   => 'users#new'
+  match '/faq',     :to   => 'pages#faq'
 
   root :to => 'pages#home'
   #root_path => '/'
