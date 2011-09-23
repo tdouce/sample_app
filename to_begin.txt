@@ -1,0 +1,1 @@
+http://ruby.railstutorial.org/chapters/rails-flavored-ruby#top
