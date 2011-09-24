@@ -1,7 +1,10 @@
 SampleApp::Application.routes.draw do
-  get "users/new"
+  #Below creates RESTful resources for user. It endows REST for all users
+  # This means, edit/new/update/destroy
+  #For example, now users/1 works, users/2 works.
+  resources :users
 
-  #get "pages/home"
+  # Below works for static pages, match one page to one url
   match '/contact', :to   => 'pages#contact'
   match '/about',   :to   => 'pages#about'
   match '/help',    :to   => 'pages#help'
