@@ -1,1 +1,11 @@
-http://ruby.railstutorial.org/chapters/rails-flavored-ruby#top
+http://ruby.railstutorial.org/chapters/modeling-and-viewing-users-two#fig:profile_mockup_profile_name
+
+Here => 
+
+Note in Listing 7.1 how we first collect a set of valid user attributes in @attr. If for some reason those attributes aren’t valid—as would be the case, for example, if we didn’t implement password confirmations properly—then the first test
+
+  it "should create a new instance given valid attributes" do
+    User.create!(@attr)
+  end
+
+
