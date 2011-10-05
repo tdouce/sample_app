@@ -1,14 +1,19 @@
 SampleApp::Application.routes.draw do
+  get "sessions/new"
+
   #Below creates RESTful resources for user. It endows REST for all users
   # This means, edit/new/update/destroy
   #For example, now users/1 works, users/2 works.
   resources :users
+  resources :sessions, :only => [ :new, :create, :destroy ]
 
   # Below works for static pages, match one page to one url
   match '/contact', :to   => 'pages#contact'
   match '/about',   :to   => 'pages#about'
   match '/help',    :to   => 'pages#help'
   match '/signup',  :to   => 'users#new'
+  match '/signin',  :to   => 'sessions#new'
+  match '/signout', :to   => 'sessions#destroy'
   match '/faq',     :to   => 'pages#faq'
 
   root :to => 'pages#home'
