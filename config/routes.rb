@@ -5,7 +5,8 @@ SampleApp::Application.routes.draw do
   # This means, edit/new/update/destroy
   #For example, now users/1 works, users/2 works.
   resources :users
-  resources :sessions, :only => [ :new, :create, :destroy ]
+  resources :sessions,    :only => [ :new, :create, :destroy ]
+  resources :microposts,  :only => [ :create, :destroy ]
 
   # Below works for static pages, match one page to one url
   match '/contact', :to   => 'pages#contact'

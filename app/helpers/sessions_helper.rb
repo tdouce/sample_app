@@ -12,6 +12,13 @@ module SessionsHelper
   def current_user?(user)
     user == current_user
   end
+
+
+  def authenticate
+    deny_access unless signed_in?
+  end
+
+
   
   # Used in Users controller in before_filter
   def deny_access

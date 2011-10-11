@@ -2,11 +2,14 @@
 #
 # Table name: users
 #
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id                 :integer         not null, primary key
+#  name               :string(255)
+#  email              :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  encrypted_password :string(255)
+#  salt               :string(255)
+#  admin              :boolean         default(FALSE)
 #
 
 class User < ActiveRecord::Base
@@ -16,6 +19,9 @@ class User < ActiveRecord::Base
   # Important for preventing a mass assignment vulnerability
   # Allows reading and writing of these attributes only
   attr_accessible :name, :email, :password, :password_confirmation
+
+  # destroy all the user's microposts
+  has_many :microposts, :dependent => :destroy
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
