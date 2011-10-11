@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_filter :authenticate,  :only => [ :index, :edit, :update ]
   before_filter :correct_user,  :only => [ :edit, :update ]
   before_filter :admin_user,    :only => :destroy 
+  before_filter :no_need_to_see,    :only => [ :new, :create ]
+  before_filter :protect_from_admin_destroying_self, :only => [ :destroy ]
 
 
   def new
@@ -21,7 +23,9 @@ class UsersController < ApplicationController
   end
 
   def create
+
     @user = User.new(params[:user])
+
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the Sample App!"
@@ -51,9 +55,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    user.destroy
-    flash[:success] = "User '#{user.name}' was destroyed."
+    flash[:success] = "User was destroyed."
     redirect_to users_path
   end
 
@@ -70,6 +72,15 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to(root_path) unless current_user.admin?
+    end
+
+    def no_need_to_see 
+      redirect_to(root_path) if signed_in?
+    end
+
+    def protect_from_admin_destroying_self
+      user = User.find(params[:id])
+      user.admin? ? redirect_to(root_path) : user.destroy
     end
 
 end

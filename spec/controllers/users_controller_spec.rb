@@ -320,7 +320,7 @@ describe UsersController do
   end
 
 
-  describe "DELETE 'destsroy'" do
+  describe "DELETE 'destroy'" do
     before(:each) do
       @user = Factory(:user)
     end
@@ -356,6 +356,12 @@ describe UsersController do
         delete :destroy, :id => @users
         response.should redirect_to(users_path)
       end
+
+      it "should have delete links" do
+        get :index, :id => @users
+        response.should have_selector("a", :content => "delete")
+      end
+
     end
   end
 
