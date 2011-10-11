@@ -138,6 +138,7 @@ describe User do
     end
 
     describe "admin attribute" do
+
       before(:each) do
         @user = User.create!(@attr)
       end
@@ -154,15 +155,10 @@ describe User do
         @user.toggle!(:admin)
         @user.should be_admin
       end
-
     end
 
 
-    
-
-
   end
-
 end
 
 
