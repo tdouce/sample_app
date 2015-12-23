@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
                     :length       => { :maximum => 50 }
   validates :email, :presence     => true,
                     :format       => { :with => email_regex },
-                    :uniqueness   => { :case_sensitive => false } 
+                    :uniqueness   => { :case_sensitive => false }
 
   # Automatically creates the virtual attribute, 'password_confirmation'
   # Because of the ':confirmation => true' argument
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
             :confirmation         => true,
             :length               => { :within => 6..40 }
 
-  
+
   before_save :encrypt_password
 
   #Return true if the user's password matches the submitted password.
@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   def feed
     Micropost.where("user_id = ?", id )
   end
-  
+
 
   private
     def encrypt_password
@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
       secure_hash("#{salt}--#{string}")
     end
 
-    def make_salt 
+    def make_salt
       secure_hash("#{Time.now.utc}--#{password}")
     end
 
